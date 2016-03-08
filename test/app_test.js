@@ -12,6 +12,9 @@ describe('test', function () {
       expect(bobo.stations.length).to.eq(4);
       for (var s in bobo.stations) {
         var station = bobo.stations[s];
+        for (var t in station.estimates) {
+          console.log(station[t]);
+        }
         expect(allStations).to.include(station.abbr.toLowerCase());
       }
       //console.log(bobo.stations[0]);
