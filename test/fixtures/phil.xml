@@ -1,3 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?><root><uri><![CDATA[http://api.bart.gov/api/etd.aspx?cmd=etd&orig=phil]]></uri><date>03/08/2016</date>
-<time>09:46:49 AM PST</time>
-<station><name>Pleasant Hill/Contra Costa Centre</name><abbr>PHIL</abbr><etd><destination>Pittsburg/Bay Point</destination><abbreviation>PITT</abbreviation><limited>0</limited><estimate><minutes>3</minutes><platform>1</platform><direction>North</direction><length>10</length><color>YELLOW</color><hexcolor>#ffff33</hexcolor><bikeflag>1</bikeflag></estimate><estimate><minutes>16</minutes><platform>1</platform><direction>North</direction><length>10</length><color>YELLOW</color><hexcolor>#ffff33</hexcolor><bikeflag>1</bikeflag></estimate><estimate><minutes>31</minutes><platform>1</platform><direction>North</direction><length>10</length><color>YELLOW</color><hexcolor>#ffff33</hexcolor><bikeflag>1</bikeflag></estimate></etd><etd><destination>SF Airport</destination><abbreviation>SFIA</abbreviation><limited>0</limited><estimate><minutes>1</minutes><platform>2</platform><direction>South</direction><length>10</length><color>YELLOW</color><hexcolor>#ffff33</hexcolor><bikeflag>1</bikeflag></estimate><estimate><minutes>16</minutes><platform>2</platform><direction>South</direction><length>9</length><color>YELLOW</color><hexcolor>#ffff33</hexcolor><bikeflag>1</bikeflag></estimate><estimate><minutes>31</minutes><platform>2</platform><direction>South</direction><length>10</length><color>YELLOW</color><hexcolor>#ffff33</hexcolor><bikeflag>1</bikeflag></estimate></etd></station><message></message></root>
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <uri><![CDATA[http://api.bart.gov/api/etd.aspx?cmd=etd&orig=phil]]></uri>
+  <date>03/08/2016</date>
+  <time>09:46:49 AM PST</time>
+  <station>
+    <name>Pleasant Hill/Contra Costa Centre</name>
+    <abbr>PHIL</abbr>
+    <etd>
+      <destination>Pittsburg/Bay Point</destination>
+      <abbreviation>PITT</abbreviation>
+      <limited>0</limited>
+      <estimate>
+        <minutes>3</minutes>
+        <platform>1</platform>
+        <direction>North</direction>
+        <length>10</length>
+        <color>YELLOW</color>
+        <hexcolor>#ffff33</hexcolor>
+        <bikeflag>1</bikeflag>
+      </estimate>
+      <estimate>
+        <minutes>16</minutes>
+        <platform>1</platform>
+        <direction>North</direction>
+        <length>10</length>
+        <color>YELLOW</color>
+        <hexcolor>#ffff33</hexcolor>
+        <bikeflag>1</bikeflag>
+      </estimate>
+      <estimate>
+        <minutes>31</minutes>
+        <platform>1</platform>
+        <direction>North</direction>
+        <length>10</length>
+        <color>YELLOW</color>
+        <hexcolor>#ffff33</hexcolor>
+        <bikeflag>1</bikeflag>
+      </estimate>
+    </etd>
+    <etd>
+      <destination>SF Airport</destination>
+      <abbreviation>SFIA</abbreviation>
+      <limited>0</limited>
+      <estimate>
+        <minutes>1</minutes>
+        <platform>2</platform>
+        <direction>South</direction>
+        <length>10</length>
+        <color>YELLOW</color>
+        <hexcolor>#ffff33</hexcolor>
+        <bikeflag>1</bikeflag>
+      </estimate>
+      <estimate>
+        <minutes>16</minutes>
+        <platform>2</platform>
+        <direction>South</direction>
+        <length>9</length>
+        <color>YELLOW</color>
+        <hexcolor>#ffff33</hexcolor>
+        <bikeflag>1</bikeflag>
+      </estimate>
+      <estimate>
+        <minutes>31</minutes>
+        <platform>2</platform>
+        <direction>South</direction>
+        <length>10</length>
+        <color>YELLOW</color>
+        <hexcolor>#ffff33</hexcolor>
+        <bikeflag>1</bikeflag>
+      </estimate>
+    </etd>
+  </station>
+  <message/>
+</root>

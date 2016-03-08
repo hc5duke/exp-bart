@@ -2,32 +2,36 @@
   'use strict';
 
   function Bobo() {
-    var cb = function (er, bd) {
-      console.log(er, bd);
-    };
+    this.stations = {};
+  }
 
+  Bobo.prototype.fetch = function() {
+    var calls = [];
     for (var st in stations) {
       var station = stations[st];
       var url = station;
-      fetch(url, cb);
+      var promise = fetch(url).then(this.processStation)//.bind(this));
+      calls.push(promise);
     }
 
-  }
+    return Promise.all(calls);
+  };
+
+  Bobo.prototype.processStation = function (data) {
+    var station = data.getElementsByTagName("station")[0];
+    var name = station.getElementsByTagName("abbr")[0].textContent;
+    console.log(name);
+    //this.stations.push(station);
+    return this;
+    //return data;
+  };
 
   var stations = [
     'embr',
     'mont',
     'powl',
+    'civc',
   ];
-
-  function fetch(url, callback) {
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = callback;
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-  }
 
   exports.Bobo = Bobo;
 })(this);
-
-Bobo();
