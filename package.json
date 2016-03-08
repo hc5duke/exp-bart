@@ -4,7 +4,7 @@
   "description": "",
   "main": "Gruntfile.js",
   "scripts": {
-    "test": "mocha ./tests/*"
+    "test": "mocha ./test/**/*test.js"
   },
   "author": "",
   "license": "ISC",
