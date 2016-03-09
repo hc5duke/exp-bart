@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <uri><![CDATA[http://api.bart.gov/api/etd.aspx?cmd=etd&orig=civc]]></uri>
+  <uri><![CDATA[http://api.bart.gov/api/etd.aspx?cmd=etd&orig=24th]]></uri>
   <date>03/08/2016</date>
   <time>07:53:34 PM PST</time>
   <station>
-    <name>Civic Center/UN Plaza</name>
-    <abbr>CIVC</abbr>
+    <name>24th St. Mission</name>
+    <abbr>24TH</abbr>
     <etd>
       <destination>Daly City</destination>
       <abbreviation>DALY</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>13</minutes>
+        <minutes>3</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>9</length>
@@ -20,7 +20,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>35</minutes>
+        <minutes>18</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>9</length>
@@ -29,7 +29,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>58</minutes>
+        <minutes>39</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>9</length>
@@ -43,7 +43,7 @@
       <abbreviation>DUBL</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>13</minutes>
+        <minutes>9</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>8</length>
@@ -52,7 +52,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>30</minutes>
+        <minutes>26</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>9</length>
@@ -61,7 +61,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>50</minutes>
+        <minutes>46</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>9</length>
@@ -75,7 +75,7 @@
       <abbreviation>MLBR</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>1</minutes>
+        <minutes>5</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>10</length>
@@ -84,7 +84,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>29</minutes>
+        <minutes>33</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>9</length>
@@ -98,7 +98,7 @@
       <abbreviation>PITT</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>3</minutes>
+        <minutes>19</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>10</length>
@@ -107,7 +107,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>23</minutes>
+        <minutes>39</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>10</length>
@@ -116,7 +116,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>43</minutes>
+        <minutes>59</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>10</length>
@@ -130,7 +130,7 @@
       <abbreviation>RICH</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>16</minutes>
+        <minutes>12</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>8</length>
@@ -139,7 +139,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>36</minutes>
+        <minutes>32</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>9</length>
@@ -148,7 +148,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>56</minutes>
+        <minutes>52</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>9</length>
@@ -162,7 +162,7 @@
       <abbreviation>SFIA</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>6</minutes>
+        <minutes>11</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>9</length>
@@ -171,7 +171,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>22</minutes>
+        <minutes>26</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>10</length>
@@ -185,7 +185,7 @@
       <abbreviation>MLBR</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>43</minutes>
+        <minutes>48</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>9</length>
@@ -194,7 +194,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>64</minutes>
+        <minutes>68</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>10</length>
@@ -203,7 +203,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>83</minutes>
+        <minutes>88</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>10</length>

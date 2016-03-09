@@ -12,7 +12,6 @@
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
     "mocha-phantomjs": "^4.0.2",
-    "prettyprint": "^1.1.0",
     "sinon": "^1.17.3"
   }
 }

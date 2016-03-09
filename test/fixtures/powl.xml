@@ -2,7 +2,7 @@
 <root>
   <uri><![CDATA[http://api.bart.gov/api/etd.aspx?cmd=etd&orig=powl]]></uri>
   <date>03/08/2016</date>
-  <time>09:46:34 AM PST</time>
+  <time>07:53:37 PM PST</time>
   <station>
     <name>Powell St.</name>
     <abbr>POWL</abbr>
@@ -11,16 +11,7 @@
       <abbreviation>DALY</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>Leaving</minutes>
-        <platform>1</platform>
-        <direction>South</direction>
-        <length>8</length>
-        <color>GREEN</color>
-        <hexcolor>#339933</hexcolor>
-        <bikeflag>1</bikeflag>
-      </estimate>
-      <estimate>
-        <minutes>4</minutes>
+        <minutes>12</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>9</length>
@@ -29,12 +20,21 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>10</minutes>
+        <minutes>34</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>9</length>
-        <color>GREEN</color>
-        <hexcolor>#339933</hexcolor>
+        <color>BLUE</color>
+        <hexcolor>#0099cc</hexcolor>
+        <bikeflag>1</bikeflag>
+      </estimate>
+      <estimate>
+        <minutes>56</minutes>
+        <platform>1</platform>
+        <direction>South</direction>
+        <length>9</length>
+        <color>BLUE</color>
+        <hexcolor>#0099cc</hexcolor>
         <bikeflag>1</bikeflag>
       </estimate>
     </etd>
@@ -43,7 +43,7 @@
       <abbreviation>DUBL</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>5</minutes>
+        <minutes>14</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>8</length>
@@ -52,7 +52,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>20</minutes>
+        <minutes>31</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>9</length>
@@ -61,44 +61,12 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>35</minutes>
+        <minutes>51</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>9</length>
         <color>BLUE</color>
         <hexcolor>#0099cc</hexcolor>
-        <bikeflag>1</bikeflag>
-      </estimate>
-    </etd>
-    <etd>
-      <destination>Fremont</destination>
-      <abbreviation>FRMT</abbreviation>
-      <limited>0</limited>
-      <estimate>
-        <minutes>12</minutes>
-        <platform>2</platform>
-        <direction>North</direction>
-        <length>9</length>
-        <color>GREEN</color>
-        <hexcolor>#339933</hexcolor>
-        <bikeflag>1</bikeflag>
-      </estimate>
-      <estimate>
-        <minutes>28</minutes>
-        <platform>2</platform>
-        <direction>North</direction>
-        <length>8</length>
-        <color>GREEN</color>
-        <hexcolor>#339933</hexcolor>
-        <bikeflag>1</bikeflag>
-      </estimate>
-      <estimate>
-        <minutes>42</minutes>
-        <platform>2</platform>
-        <direction>North</direction>
-        <length>9</length>
-        <color>GREEN</color>
-        <hexcolor>#339933</hexcolor>
         <bikeflag>1</bikeflag>
       </estimate>
     </etd>
@@ -107,28 +75,10 @@
       <abbreviation>MLBR</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>6</minutes>
+        <minutes>28</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>9</length>
-        <color>RED</color>
-        <hexcolor>#ff0000</hexcolor>
-        <bikeflag>1</bikeflag>
-      </estimate>
-      <estimate>
-        <minutes>20</minutes>
-        <platform>1</platform>
-        <direction>South</direction>
-        <length>9</length>
-        <color>RED</color>
-        <hexcolor>#ff0000</hexcolor>
-        <bikeflag>1</bikeflag>
-      </estimate>
-      <estimate>
-        <minutes>35</minutes>
-        <platform>1</platform>
-        <direction>South</direction>
-        <length>5</length>
         <color>RED</color>
         <hexcolor>#ff0000</hexcolor>
         <bikeflag>1</bikeflag>
@@ -139,7 +89,7 @@
       <abbreviation>PITT</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>8</minutes>
+        <minutes>5</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>10</length>
@@ -148,7 +98,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>22</minutes>
+        <minutes>24</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>10</length>
@@ -157,7 +107,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>37</minutes>
+        <minutes>44</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>10</length>
@@ -171,7 +121,7 @@
       <abbreviation>RICH</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>15</minutes>
+        <minutes>17</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>8</length>
@@ -180,7 +130,7 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>29</minutes>
+        <minutes>37</minutes>
         <platform>2</platform>
         <direction>North</direction>
         <length>9</length>
@@ -189,10 +139,10 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>44</minutes>
+        <minutes>57</minutes>
         <platform>2</platform>
         <direction>North</direction>
-        <length>5</length>
+        <length>9</length>
         <color>RED</color>
         <hexcolor>#ff0000</hexcolor>
         <bikeflag>1</bikeflag>
@@ -203,16 +153,7 @@
       <abbreviation>SFIA</abbreviation>
       <limited>0</limited>
       <estimate>
-        <minutes>2</minutes>
-        <platform>1</platform>
-        <direction>South</direction>
-        <length>10</length>
-        <color>YELLOW</color>
-        <hexcolor>#ffff33</hexcolor>
-        <bikeflag>1</bikeflag>
-      </estimate>
-      <estimate>
-        <minutes>13</minutes>
+        <minutes>5</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>9</length>
@@ -221,7 +162,39 @@
         <bikeflag>1</bikeflag>
       </estimate>
       <estimate>
-        <minutes>27</minutes>
+        <minutes>20</minutes>
+        <platform>1</platform>
+        <direction>South</direction>
+        <length>10</length>
+        <color>YELLOW</color>
+        <hexcolor>#ffff33</hexcolor>
+        <bikeflag>1</bikeflag>
+      </estimate>
+    </etd>
+    <etd>
+      <destination>SFO/Millbrae</destination>
+      <abbreviation>MLBR</abbreviation>
+      <limited>0</limited>
+      <estimate>
+        <minutes>42</minutes>
+        <platform>1</platform>
+        <direction>South</direction>
+        <length>9</length>
+        <color>YELLOW</color>
+        <hexcolor>#ffff33</hexcolor>
+        <bikeflag>1</bikeflag>
+      </estimate>
+      <estimate>
+        <minutes>62</minutes>
+        <platform>1</platform>
+        <direction>South</direction>
+        <length>10</length>
+        <color>YELLOW</color>
+        <hexcolor>#ffff33</hexcolor>
+        <bikeflag>1</bikeflag>
+      </estimate>
+      <estimate>
+        <minutes>82</minutes>
         <platform>1</platform>
         <direction>South</direction>
         <length>10</length>
