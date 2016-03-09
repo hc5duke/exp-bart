@@ -8,6 +8,16 @@
   },
   "author": "",
   "license": "ISC",
+  "jshintConfig": {
+    "mocha": true,
+    "node": true,
+    "predef": [
+      "context",
+      "describe",
+      "expect",
+      "it"
+    ]
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.4.5",

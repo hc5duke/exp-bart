@@ -40,9 +40,10 @@
         var min = est.getElementsByTagName('minutes')[0].textContent;
         var estimate = {
           viewer:    abbr,
+          dest:      dest,
           minutes:   Number(min) || 0,
-          platform:  est.getElementsByTagName('platform')[0].textContent,
-          direction: est.getElementsByTagName('direction')[0].textContent,
+          platform:  Number(est.getElementsByTagName('platform')[0].textContent),
+          direction: est.getElementsByTagName('direction')[0].textContent.toLowerCase(),
           length:    est.getElementsByTagName('length')[0].textContent,
           color:     est.getElementsByTagName('color')[0].textContent.toLowerCase(),
         };
@@ -78,8 +79,23 @@
         mont:    8,
         powl:    9,
         civc:   10,
-        '16th': 12,
-        '24th': 17,
+        '16th': 13,
+        '24th': 15,
+      },
+      north: {
+        oppositeDirection: 'south',
+      },
+    },
+    yellow: {
+      // direction
+      south: {
+        woak:    0,
+        embr:    7,
+        mont:    8,
+        powl:    9,
+        civc:   10,
+        '16th': 13,
+        '24th': 15,
       },
       north: {
         oppositeDirection: 'south',
@@ -87,22 +103,45 @@
     },
   };
 
-  function similarity(est1, est2) {
-    if (est1.length    != est2.length  ||
-        est1.color     != est2.color   ||
-        est1.direction != est2.direction) {
+  function similarity(train1, train2) {
+    if (train1.length    != train2.length  ||
+        train1.color     != train2.color   ||
+        train1.direction != train2.direction) {
       return 0;
     }
 
-    console.log('>>>>', est1.color); //, est1.color[est1.direction]);
-    var diffs = DISTANCES[est1.color];//[est1.direction];
-    if (diffs.oppositeDirection) {
-      diffs = DISTANCES[est1.color];//[diffs.oppositeDirection];
+    // identical trains!
+    if (
+      train1.minutes  === train2.minutes  &&
+      train1.viewer   === train2.viewer   &&
+      train1.dest     === train2.dest     &&
+      train1.platform === train2.platform
+    ) {
+      return 1;
     }
-    var diff = diffs[est2.viewer] - diffs[est1.viewer];
-    console.log('diff', diff);
-    var adjustedEst2Minutes = est2.minutes - diff;
-    return 1;
+
+    var diffs = DISTANCES[train1.color];
+    var direction = train1.direction;
+    var multiplier = 1;
+    if (diffs[direction].oppositeDirection) {
+      direction = diffs[direction].oppositeDirection;
+      multiplier = -1;
+    }
+    var diff = diffs[direction][train2.viewer] - diffs[direction][train1.viewer];
+    var adjustedTrain2Minutes = train2.minutes - multiplier * diff;
+    var offBy = Math.abs(train1.minutes - adjustedTrain2Minutes);
+
+    // almost certainly same train
+    if (offBy === 0) {
+      return 0.99;
+    }
+
+    // probably same train
+    if (offBy === 1) {
+      return 0.90;
+    }
+
+    return 0;
   }
 
   Bobo.similarity = similarity;
