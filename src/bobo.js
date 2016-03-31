@@ -10,16 +10,22 @@
 
     for (var st in stations) {
       var station = stations[st];
-      var url = station;
+      var url = "http://api.bart.gov/api/etd.aspx?cmd=etd&orig=" + station + "&key=MW9S-E7SL-26DU-VV8V";
+      if (exports.DEBUG_MODE === 'local') {
+        url = "http://127.0.0.1:8000/fixtures/" + station + ".xml";
+      } else if (exports.DEBUG_MODE === 'test') {
+        url = station;
+      }
+      console.log([!!fetch, url]);
       var promise = fetch(url).
-        then(this.processStation.bind(this));
+        then(this.processStation.bind(this)).
+        then(this.processTrains.bind(this));
       calls.push(promise);
     }
 
     return Promise.all(calls);
   };
 
-  //var _getTagText = function (tagGetter, tag) { return tagGetter(tag)[0].textContent; };
   Bobo.prototype.processStation = function (data) {
     var station = data.getElementsByTagName("station")[0];
     var etds = {};
@@ -58,6 +64,30 @@
       etds: etds,
     });
   };
+
+
+  Bobo.prototype.processTrains = function () {
+    var dest, est, estimates, etds, s;
+    this.lines = {};
+    for (s in this.stations) {
+      etds = this.stations[s].etds;
+      for (dest in etds) {
+        estimates = etds[dest].estimates;
+        for (var t in estimates) {
+          est = estimates[t];
+          if (! this.lines[est.color]) {
+            this.lines[est.color] = {};
+          }
+          if (! this.lines[est.color][est.direction]) {
+            this.lines[est.color][est.direction] = [];
+          }
+          this.lines[est.color][est.direction].push(est);
+        }
+      }
+    }
+
+  };
+
 
   var DISTANCES = {
     // color
