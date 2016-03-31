@@ -59,45 +59,69 @@
 
 
   Bobo.prototype.processTrains = function () {
-    var dest, est, estimates, etds, s;
+    var dest, est, estimates, etds, found, s, t, thisLine, tr, train;
     this.lines = {};
     for (s in this.stations) {
       etds = this.stations[s].etds;
       for (dest in etds) {
         estimates = etds[dest].estimates;
-        for (var t in estimates) {
+        for (t in estimates) {
           est = estimates[t];
-          this.lines[est.color]                || (this.lines[est.color]                = {});
+          this.lines[est.color] || (this.lines[est.color] = {});
           this.lines[est.color][est.direction] || (this.lines[est.color][est.direction] = []);
-          this.lines[est.color][est.direction].push(est);
+          thisLine = this.lines[est.color][est.direction] || [];
+          found = false;
+          for (tr in thisLine) {
+            train = thisLine[tr];
+            // close enough
+            if (similarity(train, est) > 0.7) {
+              // mark this train
+              found = true;
+              break;
+            }
+          }
+          if (!found) {
+            thisLine.push(est);
+          }
         }
       }
     }
 
-    // something
+    // sort
     var color, line, dir, trains;
     for (color in this.lines) {
       line = this.lines[color];
       for (dir in line) {
         trains = line[dir];
-        console.log(trains);
+        trains.sort(trainSort);
       }
     }
   };
+
+  function trainSort(t1, t2) {
+    return t1.location - t2.location;
+  }
 
   /**
    * normalize!
    */
   function makeEstimate(est) {
-    var min = est.getElementsByTagName('minutes')[0].textContent;
     var estimate = {
-      minutes:   Number(min) || 0,
-      platform:  Number(est.getElementsByTagName('platform')[0].textContent),
-      direction: est.getElementsByTagName('direction')[0].textContent.toLowerCase(),
-      length:    est.getElementsByTagName('length')[0].textContent,
-      color:     est.getElementsByTagName('color')[0].textContent.toLowerCase(),
+      minutes:   _getNumText(est.getElementsByTagName('minutes'  )[0]),
+      length:    _getNumText(est.getElementsByTagName('length'   )[0]),
+      platform:  _getNumText(est.getElementsByTagName('platform' )[0]),
+      direction:  _getLoText(est.getElementsByTagName('direction')[0]),
+      color:      _getLoText(est.getElementsByTagName('color'    )[0]),
     };
     return estimate;
+  }
+
+  function _getNumText(obj) {
+    return Number(obj.textContent) || 0;
+  }
+
+  function _getLoText(obj) {
+    return obj.textContent.toLowerCase();
   }
 
   function normalizeTrain(train) {
