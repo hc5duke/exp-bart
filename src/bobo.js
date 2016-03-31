@@ -99,9 +99,10 @@
     };
     return estimate;
   }
+
   function normalizeTrain(train) {
     var offset = getOffset(train);
-    train.location = offset - train.minutes;
+    train.location = train.minutes - offset;
   }
 
   function getOffset(train) {
@@ -169,6 +170,8 @@
   };
 
   function similarity(train1, train2) {
+
+    // not even close
     if (train1.length    != train2.length  ||
         train1.color     != train2.color   ||
         train1.direction != train2.direction) {
@@ -185,32 +188,33 @@
       return 1;
     }
 
-    //var diffs = DISTANCES[train1.color];
-    //var direction = train1.direction;
-    //var multiplier = 1;
-    //if (diffs[direction].oppositeDirection) {
-      //direction = diffs[direction].oppositeDirection;
-      //multiplier = -1;
-    //}
-    //var diff = diffs[direction][train2.viewer] - diffs[direction][train1.viewer];
-    //var adjustedTrain2Minutes = train2.minutes - multiplier * diff;
-    var offset1 = getOffset(train1);
-    var offset2 = getOffset(train2);
-    var diff = offset2 - offset1;
-    var adjustedTrain2Minutes = train2.minutes - diff;
-    var offBy = Math.abs(train1.minutes - adjustedTrain2Minutes);
+    train1.location || normalizeTrain(train1);
+    train2.location || normalizeTrain(train2);
+    var offBy = Math.abs(train2.location - train1.location);
 
     // almost certainly same train
     if (offBy === 0) {
       return 0.99;
     }
 
-    // probably same train
-    if (offBy === 1) {
-      return 0.90;
+    // ¯\_(ツ)_/¯
+    // 1: 90%
+    // 2: 80%
+    // 3: 20%
+    // 4: 10%
+    // 5+: 0%
+    switch (offBy) {
+      case 1:
+        return 0.90;
+      case 2:
+        return 0.80;
+      case 3:
+        return 0.20;
+      case 4:
+        return 0.10;
+      default:
+        return 0;
     }
-
-    return 0;
   }
 
   Bobo.similarity = similarity;
