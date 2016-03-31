@@ -11,7 +11,7 @@ describe('Bobo', function () {
     }
 
     var bobo = new Bobo();
-    bobo.fetch().then(function () {
+    bobo.fetch(allStations).then(function () {
       expect(bobo.stations.length).to.eq(allStations.length);
 
       // debug logging

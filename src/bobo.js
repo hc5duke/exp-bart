@@ -5,11 +5,11 @@
     this.stations = [];
   }
 
-  Bobo.prototype.fetch = function() {
+  Bobo.prototype.fetch = function(stations) {
     var calls = [];
 
-    for (var st in ALL_STATIONS) {
-      var station = ALL_STATIONS[st];
+    for (var st in stations) {
+      var station = stations[st];
       var url = station;
       var promise = fetch(url).
         then(this.processStation.bind(this));
@@ -58,16 +58,6 @@
       etds: etds,
     });
   };
-
-  var ALL_STATIONS = [
-    'woak',
-    'embr',
-    'mont',
-    'powl',
-    'civc',
-    '16th',
-    '24th',
-  ];
 
   var DISTANCES = {
     // color
