@@ -3,11 +3,30 @@
 
   //  exports.DEBUG_MODE = 'local';
 
+  // setup html
   var bart = document.getElementById('bart');
+  var statusDiv = document.createElement('div');
+  var status = document.createElement('span');
+  statusDiv.appendChild(status);
+  statusDiv.className = 'status';
+  bart.appendChild(statusDiv);
+
   var stations = ['woak', 'embr', 'mont', 'powl', 'civc', '16th', '24th'];
   var bobo = new Bobo();
+
+  // fetch station status
+  setStatus('network...');
   bobo.fetch(stations).
+
+    // set status
+    then(setStatus.bind(this, 'processing')).
+
+    // process data when everything comes back
     then(bobo.processTrains.bind(bobo)).
+
+    // set status
+    then(setStatus.bind(this, 'finished')).
+
     then(function () {
       for (var b in bobo.lines) {
         var lineDiv  = document.createElement('div');
@@ -32,5 +51,10 @@
       }
 
     });
+
+  function setStatus(stat) {
+    status.innerText = stat;
+  }
+
   exports.bobo = bobo;
 })(this);
