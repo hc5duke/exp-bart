@@ -1,60 +1,43 @@
 (function (exports) {
   'use strict';
 
-  //  exports.DEBUG_MODE = 'local';
+  exports.DEBUG_MODE = 'local';
 
   // setup html
   var bart = document.getElementById('bart');
-  var statusDiv = document.createElement('div');
-  var status = document.createElement('span');
-  statusDiv.appendChild(status);
-  statusDiv.className = 'status';
-  bart.appendChild(statusDiv);
+  var draw = new Draw(bart);
 
   var stations = ['woak', 'embr', 'mont', 'powl', 'civc', '16th', '24th'];
   var bobo = new Bobo();
 
   // fetch station status
-  setStatus('network...');
+  draw.setStatus('network...');
   bobo.fetch(stations).
 
     // set status
-    then(setStatus.bind(this, 'processing')).
+    then(draw.setStatus.bind(draw, 'processing')).
 
     // process data when everything comes back
     then(bobo.processTrains.bind(bobo)).
 
     // set status
-    then(setStatus.bind(this, 'finished')).
+    then(draw.setStatus.bind(draw, 'finished')).
 
     then(function () {
-      for (var b in bobo.lines) {
-        var lineDiv  = document.createElement('div');
-        var color = document.createElement('h3');
-        color.innerText = b;
-        lineDiv.appendChild(color);
+      var lineDiv;
 
-        var line = bobo.lines[b];
+      for (var color in bobo.lines) {
+        lineDiv = draw.makeLine(color);
+
+        var line = bobo.lines[color];
         for (var dir in line) {
-          var trains = line[dir];
-          var trainsDiv = document.createElement('div');
-          for (var t in trains) {
-            var train = trains[t];
-            var trainSpan = document.createElement('span');
-            trainSpan.innerText = '[' + train.location + ']';
-            trainsDiv.appendChild(trainSpan);
-          }
+          var trainsDiv = draw.makeTrack(lineDiv, line[dir]);
           lineDiv.appendChild(trainsDiv);
         }
-        bart.appendChild(lineDiv);
         //bobo[b]
       }
 
     });
-
-  function setStatus(stat) {
-    status.innerText = stat;
-  }
 
   exports.bobo = bobo;
 })(this);

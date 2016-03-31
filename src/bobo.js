@@ -80,6 +80,7 @@
                 est.similar = train.similar || [];
                 est.similar.push(train);
                 train.similar = undefined;
+                thisLine[tr] = est;
               } else { // closer to train
                 train.similar || (train.similar = []);
                 train.similar.push(est);
@@ -228,6 +229,7 @@
     // not even close
     if (train1.length    != train2.length  ||
         train1.color     != train2.color   ||
+        train1.dest      != train2.dest    ||
         train1.direction != train2.direction) {
       return 0;
     }
@@ -249,6 +251,11 @@
     // almost certainly same train
     if (offBy === 0) {
       return 0.99;
+    }
+
+    // similar but definitely different
+    if (train1.viewer === train2.viewer) {
+      return 0;
     }
 
     // ¯\_(ツ)_/¯
