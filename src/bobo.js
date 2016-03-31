@@ -38,9 +38,13 @@
         destination: dest,
         estimates: [],
       };
-      var estimates = d.getElementsByTagName('estimate');
+      var estimate, estimates;
+      estimates = d.getElementsByTagName('estimate');
       for (var j = 0; j < estimates.length; j++) {
-        var estimate = makeEstimate(estimates[j], abbr, dest);
+        estimate = makeEstimate(estimates[j], abbr, dest);
+        estimate.viewer = abbr;
+        estimate.dest   = dest;
+        normalizeTrain(estimate);
         etd.estimates.push(estimate);
       }
       etds[dest] = etd;
@@ -84,11 +88,9 @@
   /**
    * normalize!
    */
-  function makeEstimate(est, abbr, dest) {
+  function makeEstimate(est) {
     var min = est.getElementsByTagName('minutes')[0].textContent;
     var estimate = {
-      viewer:    abbr,
-      dest:      dest,
       minutes:   Number(min) || 0,
       platform:  Number(est.getElementsByTagName('platform')[0].textContent),
       direction: est.getElementsByTagName('direction')[0].textContent.toLowerCase(),
@@ -96,6 +98,19 @@
       color:     est.getElementsByTagName('color')[0].textContent.toLowerCase(),
     };
     return estimate;
+  }
+  function normalizeTrain(train) {
+    var offset = getOffset(train.color, train.direction, train.viewer);
+    train.location = offset - train.minutes;
+  }
+
+  function getOffset(color, dir, station) {
+    var offset, offsets = DISTANCES[color][dir];
+    if (offsets.oppositeDirection) {
+      offsets = DISTANCES[color][offsets.oppositeDirection];
+      return - offsets[station];
+    }
+    return offsets[station];
   }
 
   var DISTANCES = {
@@ -149,15 +164,17 @@
       return 1;
     }
 
-    var diffs = DISTANCES[train1.color];
-    var direction = train1.direction;
-    var multiplier = 1;
-    if (diffs[direction].oppositeDirection) {
-      direction = diffs[direction].oppositeDirection;
-      multiplier = -1;
-    }
+    //var diffs = DISTANCES[train1.color];
+    //var direction = train1.direction;
+    //var multiplier = 1;
+    //if (diffs[direction].oppositeDirection) {
+      //direction = diffs[direction].oppositeDirection;
+      //multiplier = -1;
+    //}
+    var offset = getOffset(train1.color, train1.direction, train1.viewer);
     var diff = diffs[direction][train2.viewer] - diffs[direction][train1.viewer];
-    var adjustedTrain2Minutes = train2.minutes - multiplier * diff;
+    //var adjustedTrain2Minutes = train2.minutes - multiplier * diff;
+    var adjustedTrain2Minutes = train2.minutes - offset;
     var offBy = Math.abs(train1.minutes - adjustedTrain2Minutes);
 
     // almost certainly same train
