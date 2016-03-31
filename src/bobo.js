@@ -16,10 +16,8 @@
       } else if (exports.DEBUG_MODE === 'test') {
         url = station;
       }
-      console.log([!!fetch, url]);
       var promise = fetch(url).
-        then(this.processStation.bind(this)).
-        then(this.processTrains.bind(this));
+        then(this.processStation.bind(this));
       calls.push(promise);
     }
 
@@ -42,17 +40,7 @@
       };
       var estimates = d.getElementsByTagName('estimate');
       for (var j = 0; j < estimates.length; j++) {
-        var est = estimates[j];
-        var min = est.getElementsByTagName('minutes')[0].textContent;
-        var estimate = {
-          viewer:    abbr,
-          dest:      dest,
-          minutes:   Number(min) || 0,
-          platform:  Number(est.getElementsByTagName('platform')[0].textContent),
-          direction: est.getElementsByTagName('direction')[0].textContent.toLowerCase(),
-          length:    est.getElementsByTagName('length')[0].textContent,
-          color:     est.getElementsByTagName('color')[0].textContent.toLowerCase(),
-        };
+        var estimate = makeEstimate(estimates[j], abbr, dest);
         etd.estimates.push(estimate);
       }
       etds[dest] = etd;
@@ -75,19 +63,40 @@
         estimates = etds[dest].estimates;
         for (var t in estimates) {
           est = estimates[t];
-          if (! this.lines[est.color]) {
-            this.lines[est.color] = {};
-          }
-          if (! this.lines[est.color][est.direction]) {
-            this.lines[est.color][est.direction] = [];
-          }
+          this.lines[est.color]                || (this.lines[est.color]                = {});
+          this.lines[est.color][est.direction] || (this.lines[est.color][est.direction] = []);
           this.lines[est.color][est.direction].push(est);
         }
       }
     }
 
+    // something
+    var color, line, dir, trains;
+    for (color in this.lines) {
+      line = this.lines[color];
+      for (dir in line) {
+        trains = line[dir];
+        console.log(trains);
+      }
+    }
   };
 
+  /**
+   * normalize!
+   */
+  function makeEstimate(est, abbr, dest) {
+    var min = est.getElementsByTagName('minutes')[0].textContent;
+    var estimate = {
+      viewer:    abbr,
+      dest:      dest,
+      minutes:   Number(min) || 0,
+      platform:  Number(est.getElementsByTagName('platform')[0].textContent),
+      direction: est.getElementsByTagName('direction')[0].textContent.toLowerCase(),
+      length:    est.getElementsByTagName('length')[0].textContent,
+      color:     est.getElementsByTagName('color')[0].textContent.toLowerCase(),
+    };
+    return estimate;
+  }
 
   var DISTANCES = {
     // color

@@ -5,8 +5,7 @@
 
   var stations = ['mont', 'powl', 'civc', '16th'];
   var bobo = new Bobo();
-  bobo.fetch(stations).then(function (body) {
-    console.log(bobo.trains);
-  });
+  bobo.fetch(stations).
+    then(bobo.processTrains.bind(bobo));
   exports.bobo = bobo;
 })(this);
