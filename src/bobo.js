@@ -100,22 +100,43 @@
     return estimate;
   }
   function normalizeTrain(train) {
-    var offset = getOffset(train.color, train.direction, train.viewer);
+    var offset = getOffset(train);
     train.location = offset - train.minutes;
   }
 
-  function getOffset(color, dir, station) {
-    var offset, offsets = DISTANCES[color][dir];
+  function getOffset(train) {
+    var color, dir, sttn, offset, offsets;
+
+    color   = train.color;
+    dir     = train.direction;
+    sttn    = train.viewer;
+    offsets = DISTANCES[color][dir];
+
     if (offsets.oppositeDirection) {
       offsets = DISTANCES[color][offsets.oppositeDirection];
-      return - offsets[station];
+      return - offsets[sttn];
     }
-    return offsets[station];
+    return offsets[sttn];
   }
 
   var DISTANCES = {
     // color
     blue: {
+      // direction
+      south: {
+        woak:    0,
+        embr:    7,
+        mont:    8,
+        powl:    9,
+        civc:   10,
+        '16th': 13,
+        '24th': 15,
+      },
+      north: {
+        oppositeDirection: 'south',
+      },
+    },
+    red: {
       // direction
       south: {
         woak:    0,
@@ -171,10 +192,12 @@
       //direction = diffs[direction].oppositeDirection;
       //multiplier = -1;
     //}
-    var offset = getOffset(train1.color, train1.direction, train1.viewer);
-    var diff = diffs[direction][train2.viewer] - diffs[direction][train1.viewer];
+    //var diff = diffs[direction][train2.viewer] - diffs[direction][train1.viewer];
     //var adjustedTrain2Minutes = train2.minutes - multiplier * diff;
-    var adjustedTrain2Minutes = train2.minutes - offset;
+    var offset1 = getOffset(train1);
+    var offset2 = getOffset(train2);
+    var diff = offset2 - offset1;
+    var adjustedTrain2Minutes = train2.minutes - diff;
     var offBy = Math.abs(train1.minutes - adjustedTrain2Minutes);
 
     // almost certainly same train
