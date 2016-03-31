@@ -1,7 +1,7 @@
 (function (exports) {
   'use strict';
 
-  exports.DEBUG_MODE = 'local';
+  //  exports.DEBUG_MODE = 'local';
 
   var bart = document.getElementById('bart');
   var stations = ['woak', 'embr', 'mont', 'powl', 'civc', '16th', '24th'];

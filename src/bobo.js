@@ -75,6 +75,15 @@
             train = thisLine[tr];
             // close enough
             if (similarity(train, est) > 0.7) {
+              // closer to est
+              if (est.minutes < train.minutes) {
+                est.similar = train.similar || [];
+                est.similar.push(train);
+                train.similar = undefined;
+              } else { // closer to train
+                train.similar || (train.similar = []);
+                train.similar.push(est);
+              }
               // mark this train
               found = true;
               break;
@@ -87,19 +96,25 @@
       }
     }
 
-    // sort
+    // sort trains and similar trains list
     var color, line, dir, trains;
     for (color in this.lines) {
       line = this.lines[color];
       for (dir in line) {
         trains = line[dir];
-        trains.sort(trainSort);
+        trains.sort(trainSort.bind(this, 'location'));
+
+        // this part is for debugging only
+        for (var tt in trains) {
+          var similar = trains[tt].similar;
+          similar && similar.sort(trainSort.bind(this, 'minutes'));
+        }
       }
     }
   };
 
-  function trainSort(t1, t2) {
-    return t1.location - t2.location;
+  function trainSort(field, t1, t2) {
+    return t1[field] - t2[field];
   }
 
   /**
