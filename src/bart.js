@@ -1,11 +1,11 @@
 (function (exports) {
   'use strict';
 
-  function Bobo() {
+  function Bart() {
     this.stations = [];
   }
 
-  Bobo.prototype.fetch = function(stations) {
+  Bart.prototype.fetch = function(stations) {
     var calls = [];
 
     for (var st in stations) {
@@ -24,7 +24,7 @@
     return Promise.all(calls);
   };
 
-  Bobo.prototype.processStation = function (data) {
+  Bart.prototype.processStation = function (data) {
     var station = data.getElementsByTagName("station")[0];
     var etds = {};
     var etdData = station.getElementsByTagName('etd');
@@ -58,7 +58,7 @@
   };
 
 
-  Bobo.prototype.processTrains = function () {
+  Bart.prototype.processTrains = function () {
     var dest, est, estimates, etds, found, s, t, thisLine, tr, train;
     this.lines = {};
     var colors = ['red', 'blue', 'yellow', 'green', 'orange'];
@@ -216,10 +216,10 @@
     }
   }
 
-  Bobo.similarity = similarity;
+  Bart.similarity = similarity;
 
-  exports.Bobo = Bobo;
+  exports.Bart = Bart;
 
   // for testing
-  exports.Bobo.normalizeTrain = normalizeTrain;
+  exports.Bart.normalizeTrain = normalizeTrain;
 })(this);

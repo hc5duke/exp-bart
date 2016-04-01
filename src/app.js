@@ -8,7 +8,7 @@
   var draw = new Draw(bart);
 
   var stations = ['woak', 'embr', 'mont', 'powl', 'civc', '16th', '24th'];
-  var bobo = new Bobo();
+  var bart = new Bart();
 
   // fetch station status
   draw.setStatus('network...');
@@ -16,21 +16,21 @@
 
   var lineDiv = draw.makeLine('red');
 
-  bobo.fetch(stations).
+  bart.fetch(stations).
 
     // set status
     then(draw.setStatus.bind(draw, 'processing')).
 
     // process data when everything comes back
-    then(bobo.processTrains.bind(bobo)).
+    then(bart.processTrains.bind(bart)).
 
     // set status
     then(draw.setStatus.bind(draw, 'loaded')).
 
     then(function () {
-      for (var color in bobo.lines) {
+      for (var color in bart.lines) {
 
-        var line = bobo.lines[color];
+        var line = bart.lines[color];
         for (var dir in line) {
           var track = lineDiv.tracks[dir];
           draw.addTrains(track, line[dir], color);
@@ -39,5 +39,5 @@
 
     });
 
-  exports.bobo = bobo;
+  exports.bart = bart;
 })(this);
