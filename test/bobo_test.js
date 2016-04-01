@@ -41,6 +41,7 @@ describe('.similarity', function () {
   context('same trains', function () {
     it('same trains return 1', function () {
       var train1 = {"viewer":"woak","minutes":2,"platform":"1","direction":"south","length":"9","color":"blue"};
+      Bobo.normalizeTrain(train1);
       expect(Bobo.similarity(train1, train1)).to.eq(1);
     });
   });
@@ -49,12 +50,18 @@ describe('.similarity', function () {
     it('almost certainly same trains return 1', function () {
       var train1 = {"viewer":"civc","minutes":13,"platform":1,"direction":"south","length":"9","color":"blue"};
       var train2 = {"viewer":"16th","minutes":16,"platform":1,"direction":"south","length":"9","color":"blue"};
+      Bobo.normalizeTrain(train1);
+      Bobo.normalizeTrain(train2);
+
       expect(Bobo.similarity(train1, train2)).to.be.above(0.9);
     });
 
     it('probably same trains return a value greater than 0', function () {
       var train1 = {"viewer":"16th","dest":"pitt","minutes":40,"platform":2,"direction":"north","length":"10","color":"yellow"};
       var train2 = {"viewer":"24th","dest":"pitt","minutes":39,"platform":2,"direction":"north","length":"10","color":"yellow"};
+      Bobo.normalizeTrain(train1);
+      Bobo.normalizeTrain(train2);
+
       expect(Bobo.similarity(train1, train2)).to.be.above(0.8);
     });
   });
@@ -67,18 +74,27 @@ describe('.similarity', function () {
     it('trains with same time but different station return 0', function () {
       var train1 = {"viewer":"woak","minutes":2,"platform":"1","direction":"south","length":"9","color":"blue"};
       var train2 = {"viewer":"embr","minutes":2,"platform":"1","direction":"south","length":"9","color":"blue"};
+      Bobo.normalizeTrain(train1);
+      Bobo.normalizeTrain(train2);
+
       expect(Bobo.similarity(train1, train2)).to.eq(0);
     });
 
     it('almost same (wrong direction) trains return 0', function () {
       var train1 = {"viewer":"woak","minutes":2,"platform":"1","direction":"south","length":"9","color":"blue"};
       var train2 = {"viewer":"embr","minutes":9,"platform":"1","direction":"north","length":"9","color":"blue"};
+      Bobo.normalizeTrain(train1);
+      Bobo.normalizeTrain(train2);
+
       expect(Bobo.similarity(train1, train2)).to.eq(0);
     });
 
     it('almost same (wrong length) trains return 0', function () {
       var train1 = {"viewer":"woak","minutes":2,"platform":"1","direction":"south","length":"9","color":"blue"};
       var train2 = {"viewer":"embr","minutes":9,"platform":"1","direction":"north","length":"8","color":"blue"};
+      Bobo.normalizeTrain(train1);
+      Bobo.normalizeTrain(train2);
+
       expect(Bobo.similarity(train1, train2)).to.eq(0);
     });
   });

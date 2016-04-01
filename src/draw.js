@@ -60,7 +60,7 @@
       ].join('');
       for (var x in train.similar) {
         var sim = train.similar[x];
-        trainSpan.title += ['\n', sim.minutes, 'm from', sim.viewer].join('');
+        trainSpan.title += ['\n', sim.minutes, 'm from ', sim.viewer].join('');
       }
 
       trackDiv.appendChild(trainSpan);

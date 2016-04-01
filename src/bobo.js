@@ -141,11 +141,6 @@
   }
 
   function normalizeTrain(train) {
-    var offset = getOffset(train);
-    train.location = train.minutes - offset;
-  }
-
-  function getOffset(train) {
     var color, dir, sttn, offset, offsets;
 
     color   = train.color;
@@ -155,9 +150,12 @@
 
     if (offsets.oppositeDirection) {
       offsets = DISTANCES[color][offsets.oppositeDirection];
-      return - offsets[sttn]; // correct
+      //return - offsets[sttn]; // correct
+      train.location = train.minutes + offsets[sttn];
+    } else {
+      //return - offsets[sttn];
+      train.location = offsets[sttn] - train.minutes;
     }
-    return - offsets[sttn];
   }
 
   var DISTANCES = exports.consts.DISTANCES;
@@ -182,8 +180,6 @@
       return 1;
     }
 
-    train1.location || normalizeTrain(train1);
-    train2.location || normalizeTrain(train2);
     var offBy = Math.abs(train2.location - train1.location);
 
     // almost certainly same train
@@ -219,4 +215,7 @@
   Bobo.similarity = similarity;
 
   exports.Bobo = Bobo;
+
+  // for testing
+  exports.Bobo.normalizeTrain = normalizeTrain;
 })(this);
