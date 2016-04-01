@@ -63,6 +63,19 @@
         oppositeDirection: 'south',
       },
     },
+    orange: {
+      // direction
+      south: {
+        rich: 0,
+        deln: 4,
+        plza: 7,
+        nbrk: 10,
+        dbrk: 13,
+      },
+      north: {
+        oppositeDirection: 'south',
+      },
+    },
   };
 
   exports.consts = {

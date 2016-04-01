@@ -16,26 +16,35 @@
   };
 
   Draw.prototype.makeLine = function(color) {
-    var lineDiv = crElem('div');
-    lineDiv.className = 'line';
+    // lineOuter contains colorName and lineDiv
+    var lineOuter = crElem('div');
+    this.base.appendChild(lineOuter);
+
+    // line name
     var colorName = crElem('h3');
     colorName.innerText = color;
     colorName.className = color;
-    lineDiv.appendChild(colorName);
+    lineOuter.appendChild(colorName);
 
-    for (var s in this.stations) {
-      var station = this.stations[s];
+    // line stations and trains
+    var lineDiv = crElem('div');
+    lineDiv.className = 'line';
+    lineDiv.color = color;
+
+    var stationsDiv = crElem('div');
+    lineDiv.appendChild(stationsDiv);
+
+    for (var station in DISTANCES[color].south) {
       var loc = DISTANCES[color].south[station];
 
       var stationDiv = crElem('span');
       stationDiv.className = 'station';
       stationDiv.innerText = station;
       stationDiv.style.left = convertLocToPx(loc) + 'px';
-      lineDiv.appendChild(stationDiv);
-      console.log(station, loc);
+      stationsDiv.appendChild(stationDiv);
     }
 
-    this.base.appendChild(lineDiv);
+    lineOuter.appendChild(lineDiv);
 
     return lineDiv;
   };
@@ -47,15 +56,18 @@
 
   Draw.prototype.makeTrack = function(lineDiv, trains) {
     var trackDiv = crElem('div');
-    trackDiv.className = 'track';
+    trackDiv.className = 'track ' + lineDiv.color;
     for (var t in trains) {
       var train = trains[t];
-      var trainSpan = crElem('span');
-      trainSpan.className = 'train';
+      var trainSpan = crElem('div');
+      trainSpan.className = lineDiv.color + ' train';
+      if (train.direction === 'south') {
+        trainSpan.className += ' reverse';
+      }
       locate(train, trainSpan);
-      trainSpan.innerText = '[' + train.location + ']';
+      trainSpan.innerText = '🚈';
       trainSpan.title = [
-        '-> ', train.dest, '\n',
+        '-> ', train.location, ':', train.dest, '\n',
         train.minutes, 'm from ', train.viewer
       ].join('');
       for (var x in train.similar) {
@@ -71,7 +83,6 @@
 
   function locate(train, span) {
     span.style.left = convertLocToPx(train.location) + 'px';
-    span.style.top  = '3px';
   }
 
   function convertLocToPx(loc) {

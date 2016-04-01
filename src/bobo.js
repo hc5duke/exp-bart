@@ -61,14 +61,18 @@
   Bobo.prototype.processTrains = function () {
     var dest, est, estimates, etds, found, s, t, thisLine, tr, train;
     this.lines = {};
+    var colors = ['red', 'blue', 'yellow', 'green', 'orange'];
+    var directions = ['south', 'north'];
+    for (var c in colors) {
+      this.lines[colors[c]] = {south: [], north: []};
+    }
+
     for (s in this.stations) {
       etds = this.stations[s].etds;
       for (dest in etds) {
         estimates = etds[dest].estimates;
         for (t in estimates) {
           est = estimates[t];
-          this.lines[est.color] || (this.lines[est.color] = {});
-          this.lines[est.color][est.direction] || (this.lines[est.color][est.direction] = []);
           thisLine = this.lines[est.color][est.direction] || [];
           found = false;
           for (tr in thisLine) {
