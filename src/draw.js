@@ -49,8 +49,8 @@
     var north = crElem('div');
     south.className = 'track';
     north.className = 'track';
-    lineDiv.appendChild(south);
     lineDiv.appendChild(north);
+    lineDiv.appendChild(south);
 
     lineDiv.tracks = {
       south: south,
@@ -70,7 +70,7 @@
       var train = trains[t];
       var trainDiv = crElem('div');
       trainDiv.className = 'train ' + color;
-      if (train.direction === 'south') {
+      if (train.direction === 'north') {
         trainDiv.className += ' reverse';
       }
       locate(train, trainDiv);
@@ -95,7 +95,7 @@
   }
 
   function convertLocToPx(loc) {
-    return 400 + loc * 30;
+    return 800 - loc * 30;
   }
 
   var crElem = function(elem){
