@@ -1,6 +1,55 @@
 body {
   font-family: helvetica;
-  background-color: #ddd;
+  background-color: #eee;
   padding: 0;
   margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.line {
+  border: 1px solid #008;
+  position: relative;
+}
+
+.track {
+  border: 1px solid #800;
+  position: relative;
+  height: 32px;
+  overflow-x: hidden;
+}
+
+.station {
+  display: inline-block;
+  position: absolute;
+  font-size: 8px;
+  line-height: 10px;
+  height: 10px;
+  border: 1px solid #222;
+  background-color: #fff;
+  color: #222;
+  /*top: 27px;*/
+}
+
+.train {
+  display: inline-block;
+  position: absolute;
+}
+
+.yellow {
+  color: #aa2;
+}
+
+.red{
+  color: #a44;
+}
+
+.blue {
+  color: #22f;
+}
+
+.green {
+  color: #2a2;
 }

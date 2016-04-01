@@ -12,6 +12,7 @@
 
   // fetch station status
   draw.setStatus('network...');
+  draw.addStations(stations);
   bobo.fetch(stations).
 
     // set status
@@ -34,7 +35,6 @@
           var trainsDiv = draw.makeTrack(lineDiv, line[dir]);
           lineDiv.appendChild(trainsDiv);
         }
-        //bobo[b]
       }
 
     });
