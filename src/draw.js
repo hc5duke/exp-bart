@@ -18,13 +18,8 @@
   Draw.prototype.makeLine = function(color) {
     // lineOuter contains colorName and lineDiv
     var lineOuter = crElem('div');
+    lineOuter.className = color;
     this.base.appendChild(lineOuter);
-
-    // line name
-    var colorName = crElem('h3');
-    colorName.innerText = color;
-    colorName.className = color;
-    lineOuter.appendChild(colorName);
 
     // line stations and trains
     var lineDiv = crElem('div');
@@ -56,11 +51,11 @@
 
   Draw.prototype.makeTrack = function(lineDiv, trains) {
     var trackDiv = crElem('div');
-    trackDiv.className = 'track ' + lineDiv.color;
+    trackDiv.className = 'track';
     for (var t in trains) {
       var train = trains[t];
       var trainSpan = crElem('div');
-      trainSpan.className = lineDiv.color + ' train';
+      trainSpan.className = 'train';
       if (train.direction === 'south') {
         trainSpan.className += ' reverse';
       }
