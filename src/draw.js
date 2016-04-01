@@ -18,28 +18,44 @@
   Draw.prototype.makeLine = function(color) {
     // lineOuter contains colorName and lineDiv
     var lineOuter = crElem('div');
-    lineOuter.className = color;
     this.base.appendChild(lineOuter);
 
     // line stations and trains
     var lineDiv = crElem('div');
     lineDiv.className = 'line';
-    lineDiv.color = color;
+    console.log(lineDiv);
 
     var stationsDiv = crElem('div');
     lineDiv.appendChild(stationsDiv);
 
-    for (var station in DISTANCES[color].south) {
-      var loc = DISTANCES[color].south[station];
+    for (var s in this.stations) {
+      var station = this.stations[s];
 
       var stationDiv = crElem('span');
       stationDiv.className = 'station';
       stationDiv.innerText = station;
+
+      var loc = DISTANCES[color].south[station];
+
+      console.log(station, color, loc);
       stationDiv.style.left = convertLocToPx(loc) + 'px';
       stationsDiv.appendChild(stationDiv);
     }
 
     lineOuter.appendChild(lineDiv);
+
+    // add tracks
+    var south = crElem('div');
+    var north = crElem('div');
+    south.className = 'track';
+    north.className = 'track';
+    lineDiv.appendChild(south);
+    lineDiv.appendChild(north);
+
+    lineDiv.tracks = {
+      south: south,
+      north: north,
+    };
 
     return lineDiv;
   };
@@ -49,28 +65,26 @@
     this.stations = stations;
   };
 
-  Draw.prototype.makeTrack = function(lineDiv, trains) {
-    var trackDiv = crElem('div');
-    trackDiv.className = 'track';
+  Draw.prototype.addTrains = function(trackDiv, trains, color) {
     for (var t in trains) {
       var train = trains[t];
-      var trainSpan = crElem('div');
-      trainSpan.className = 'train';
+      var trainDiv = crElem('div');
+      trainDiv.className = 'train ' + color;
       if (train.direction === 'south') {
-        trainSpan.className += ' reverse';
+        trainDiv.className += ' reverse';
       }
-      locate(train, trainSpan);
-      trainSpan.innerText = '🚈';
-      trainSpan.title = [
+      locate(train, trainDiv);
+      trainDiv.innerText = '🚈';
+      trainDiv.title = [
         '-> ', train.location, ':', train.dest, '\n',
         train.minutes, 'm from ', train.viewer
       ].join('');
       for (var x in train.similar) {
         var sim = train.similar[x];
-        trainSpan.title += ['\n', sim.minutes, 'm from ', sim.viewer].join('');
+        trainDiv.title += ['\n', sim.minutes, 'm from ', sim.viewer].join('');
       }
 
-      trackDiv.appendChild(trainSpan);
+      trackDiv.appendChild(trainDiv);
     }
 
     return trackDiv;

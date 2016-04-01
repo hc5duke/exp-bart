@@ -13,6 +13,9 @@
   // fetch station status
   draw.setStatus('network...');
   draw.addStations(stations);
+
+  var lineDiv = draw.makeLine('red');
+
   bobo.fetch(stations).
 
     // set status
@@ -25,15 +28,12 @@
     then(draw.setStatus.bind(draw, 'finished')).
 
     then(function () {
-      var lineDiv;
-
       for (var color in bobo.lines) {
-        lineDiv = draw.makeLine(color);
 
         var line = bobo.lines[color];
         for (var dir in line) {
-          var trainsDiv = draw.makeTrack(lineDiv, line[dir]);
-          lineDiv.appendChild(trainsDiv);
+          var track = lineDiv.tracks[dir];
+          draw.addTrains(track, line[dir], color);
         }
       }
 

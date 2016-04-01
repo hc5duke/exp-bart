@@ -47,23 +47,23 @@ body {
   top: 10px;
 }
 
-.yellow .train {
+.yellow.train {
   background-color: rgba(160, 160, 32, 0.5);
 }
 
-.red .train {
+.red.train {
   background-color: rgba(160, 64, 64, 0.5);
 }
 
-.blue .train {
+.blue.train {
   background-color: rgba(32, 32, 255, 0.5);
 }
 
-.green .train {
+.green.train {
   background-color: rgba(32, 160, 32, 0.5);
 }
 
-.orage .train {
+.orage.train {
   background-color: rgba(255, 160, 32, 0.5);
 }
 
@@ -87,22 +87,6 @@ body {
   color: #fa2;
 }
 
-.yellow .track:last-child {
-  border-top: 1px solid #aa2;
-}
-
-.red .track:last-child {
-  border-top: 1px solid #a44;
-}
-
-.blue .track:last-child {
-  border-top: 1px solid #22f;
-}
-
-.green .track:last-child {
-  border-top: 1px solid #2a2;
-}
-
-.orange .track:last-child {
-  border-top: 1px solid #fa2;
+.track:last-child {
+  border-top: 1px solid #888;
 }
