@@ -25,7 +25,7 @@
     then(bobo.processTrains.bind(bobo)).
 
     // set status
-    then(draw.setStatus.bind(draw, 'finished')).
+    then(draw.setStatus.bind(draw, 'loaded')).
 
     then(function () {
       for (var color in bobo.lines) {

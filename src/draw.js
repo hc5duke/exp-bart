@@ -26,6 +26,7 @@
     console.log(lineDiv);
 
     var stationsDiv = crElem('div');
+    stationsDiv.className = 'stations';
     lineDiv.appendChild(stationsDiv);
 
     for (var s in this.stations) {
@@ -33,18 +34,23 @@
 
       var stationDiv = crElem('span');
       stationDiv.className = 'station';
-      stationDiv.innerText = station;
+      stationDiv.innerText = station.toUpperCase();
 
       var loc = DISTANCES[color].south[station];
 
       console.log(station, color, loc);
-      stationDiv.style.left = convertLocToPx(loc) + 'px';
+      stationDiv.style.top = convertLocToPx(loc) + 'px';
+
       stationsDiv.appendChild(stationDiv);
     }
 
     lineOuter.appendChild(lineDiv);
 
     // add tracks
+    var trackLines = crElem('div');
+    trackLines.className = 'track-lines';
+    lineDiv.appendChild(trackLines);
+
     var south = crElem('div');
     var north = crElem('div');
     south.className = 'track';
@@ -91,7 +97,7 @@
   };
 
   function locate(train, span) {
-    span.style.left = convertLocToPx(train.location) + 'px';
+    span.style.top = convertLocToPx(train.location) + 'px';
   }
 
   function convertLocToPx(loc) {

@@ -13,10 +13,22 @@ body {
   position: relative;
 }
 
+.status {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding-right: 2px;
+}
+
 .track {
   position: relative;
-  height: 32px;
-  overflow-x: hidden;
+  height: 100%;
+  width: 40px;
+  overflow-y: hidden;
+  display: inline-block;
+}
+
+.stations {
 }
 
 .station {
@@ -25,10 +37,14 @@ body {
   font-size: 8px;
   line-height: 10px;
   height: 10px;
+  padding-left: 2px;
+  padding-right: 2px;
   border: 1px solid #222;
   background-color: #fff;
   color: #222;
-  top: 27px;
+  width: 28px;
+  left: 26px;
+  text-align: center;
   z-index: 10;
 }
 
@@ -40,11 +56,12 @@ body {
   padding-left: 2px;
   padding-top: 2px;
   top: 0px;
+  transform: scale(-1, 1) rotate(-90deg);
 }
 
 .train.reverse {
-  transform: scale(-1, 1);
-  top: 10px;
+  transform: scale(-1, 1) rotate(90deg);
+  left: 14px;
 }
 
 .yellow.train {
@@ -87,6 +104,18 @@ body {
   color: #fa2;
 }
 
+.track:nth-last-child(2) {
+  border-right: 6px dotted #444;
+}
+
 .track:last-child {
-  border-top: 1px solid #888;
+  border-left: 6px dotted #444;
+}
+
+.track-lines {
+  position: absolute;
+  width: 8px;
+  left: 36px;
+  height: 100%;
+  border: 1px solid #444;
 }
