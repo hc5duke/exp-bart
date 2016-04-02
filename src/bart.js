@@ -238,6 +238,7 @@
 
 
   exports.Bart = Bart;
+  exports.Train = Train;
 
   // for testing
   exports.Bart.normalizeTrain = normalizeTrain;

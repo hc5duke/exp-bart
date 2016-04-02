@@ -9,12 +9,10 @@
     main.scrollLeft = (100 + 400 - window.innerWidth)/2;
 
     var draw = SVG('bart');
+    this.draw = draw;
+
     var image = draw.image('img/BARTMapDay.svg');
     image.size(2200, 2200).y(-200).x(-100);
-
-    var text = '🚈';
-    draw.text(text).x(780).y(300).rotate(-30);
-    draw.text(text).x(800).y(308).rotate(180-30);
 
     // legend
     draw.rect(250, 100).x(10).y(550).radius(4);
@@ -22,7 +20,24 @@
     draw.text('Train Locator\nan experiment by @hc5duke').x(30).y(580);
     //rect.animate('.5s').fill('#f8f8f8');
 
+    // test this out
+    var train = new Train({
+      direction: 'north',
+      color:     'yellow',
+      location:  10,
+    });
+
+    this.addTrain(train);
   }
+
+  var trainEmoji = '🚈';
+  Draw.prototype.addTrain = function() {
+    //
+    var x = 300;
+    var y = 870;
+    var t = -30;
+    this.draw.text(trainEmoji).x(x).y(y).scale(-1, 1).rotate(43);
+  };
 
   Draw.prototype.setStatus = function (stat) {
     this.status.innerText = stat;
