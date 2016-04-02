@@ -101,7 +101,7 @@
   }
 
   function convertLocToPx(loc) {
-    return 800 - loc * 30;
+    return loc * 20 + 200;
   }
 
   var crElem = function(elem){

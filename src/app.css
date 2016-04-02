@@ -35,6 +35,7 @@ body {
   display: inline-block;
   position: absolute;
   font-size: 8px;
+  font-family: "courier new", courier, monospace;
   line-height: 10px;
   height: 10px;
   padding-left: 2px;
@@ -43,7 +44,7 @@ body {
   background-color: #fff;
   color: #222;
   width: 28px;
-  left: 26px;
+  left: 23px;
   text-align: center;
   z-index: 10;
 }
@@ -104,18 +105,11 @@ body {
   color: #fa2;
 }
 
-.track:nth-last-child(2) {
-  border-right: 6px dotted #444;
-}
-
-.track:last-child {
-  border-left: 6px dotted #444;
-}
-
 .track-lines {
   position: absolute;
-  width: 8px;
-  left: 36px;
+  width: 6px;
+  left: 34px;
   height: 100%;
-  border: 1px solid #444;
+  border-left: 1px solid #444;
+  border-right: 1px solid #444;
 }
