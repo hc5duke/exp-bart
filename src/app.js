@@ -32,8 +32,8 @@
 
         var line = bart.lines[color];
         for (var dir in line) {
-          var track = lineDiv.tracks[dir];
-          draw.addTrains(track, line[dir], color);
+          //var track = lineDiv.tracks[dir];
+          //draw.addTrains(track, line[dir], color);
         }
       }
 
