@@ -72,7 +72,7 @@
       for (dest in etds) {
         estimates = etds[dest].estimates;
         for (t in estimates) {
-          est = estimates[t];
+          est = new Train(estimates[t]);
           thisLine = this.lines[est.color][est.direction] || [];
           found = false;
           for (tr in thisLine) {
@@ -217,6 +217,25 @@
   }
 
   Bart.similarity = similarity;
+
+  function Train(data) {
+    for (var d in data) {
+      this[d] = data[d];
+    }
+  }
+
+  Train.prototype.avgLocation = function() {
+    if (!this.similar) {
+      return this.location;
+    }
+
+    var locSum = this.location;
+    for (var s in this.similar) {
+      locSum += this.similar[s].location;
+    }
+    return locSum / (1 + this.similar.length);
+  };
+
 
   exports.Bart = Bart;
 

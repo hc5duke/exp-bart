@@ -1,31 +1,47 @@
-(function (exports) {
+(function () {
   'use strict';
 
-  exports.DEBUG_MODE = 'local';
+  function init () {
+    window.DEBUG_MODE = 'local';
 
-  // set up d3
-  var draw = new Draw();
+    // set up svg
+    var draw = new Draw();
 
-  // fetch station status
-  var bart = new Bart();
-  var stations = ['woak', 'embr', 'mont', 'powl', 'civc', '16th', '24th'];
-  bart.fetch(stations).
+    // fetch station status
+    var bart = new Bart();
+    var stations = ['woak', 'embr', 'mont', 'powl', 'civc', '16th', '24th'];
+    bart.fetch(stations).
+      then(bart.processTrains.bind(bart)). // process data when everything comes back
+      then(drawTrains).                    // draw!
+      then(done);                          // done?
 
-    // process data when everything comes back
-    then(bart.processTrains.bind(bart)).
-
-    then(function () {
-      console.log(bart);
+    function drawTrains() {
       for (var color in bart.lines) {
-
         var line = bart.lines[color];
         for (var dir in line) {
-          //var track = lineDiv.tracks[dir];
-          //draw.addTrains(track, line[dir], color);
+          var track = line[dir];
+          for (var t in track) {
+            var train = track[t];
+            //log(train);
+          }
+
+          //log(train);
         }
       }
+    }
 
-    });
+    function done() {
+      log('idk my bff jill?');      // done?
+    }
 
-  exports.bart = bart;
-})(this);
+    window.bart = bart;
+  }
+
+  function log() {
+    if (window.DEBUG_MODE) {
+      console.log.apply(console, arguments);
+    }
+  }
+  // wait for dom i guess?
+  $(init);
+})();
