@@ -2,13 +2,36 @@
   'use strict';
 
   function Draw(base) {
-    this.base = base;
-    var statusDiv = crElem('div');
-    statusDiv.innerText = 'Status: ';
-    this.status = crElem('span');
-    statusDiv.appendChild(this.status);
-    statusDiv.className = 'status';
-    base.appendChild(statusDiv);
+    var main = document.getElementById('main');
+
+    /*
+    y1 = 700
+    y2 = 1000
+
+    - s
+    |
+    |
+    - y1
+    |
+    - y2
+    |
+    |
+    - s + h
+
+=> y1 - s = (s + h) - y2
+=> y1 + y2 - h = 2 * s
+*/
+
+    main.scrollTop = (700 + 1000 - window.innerHeight)/2;
+
+    var draw = SVG('bart');
+    var image = draw.image('img/BARTMapDay.svg');
+    image.size(2200, 2200).y(-200).x(-100);
+
+    var text = '🚈';
+    draw.text(text).x(780).y(300).rotate(-30);
+    draw.text(text).x(800).y(308).rotate(180-30);
+
   }
 
   Draw.prototype.setStatus = function (stat) {
